@@ -22,3 +22,6 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### VScode install package
+参考：https://qiita.com/newt0/items/aeddc6a179ea3a464ed5
