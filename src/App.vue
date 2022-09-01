@@ -1,8 +1,8 @@
 <template>
   <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/home2">Home2</router-link> |
-    <router-link to="/about">About</router-link>
+    <router-link to="/">Home-練習1</router-link> |
+    <router-link to="/home2">Home2-練習2</router-link> |
+    <router-link to="/about-props">Propsについて</router-link>
   </nav>
   <router-view />
 </template>
