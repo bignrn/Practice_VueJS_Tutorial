@@ -1,6 +1,7 @@
 <template>
   <!-- 練習1 -->
   <div class="parent">
+    <p>{{ msg }}</p>
     <h1>{{ title }}</h1>
     <p>入力してね：<input v-model="input_msg" /></p>
     <hello-child :message="input_msg" />
@@ -34,6 +35,7 @@ export default {
       this.total += 1;
     },
   },
+  props: ["msg"],
 };
 </script>
 
