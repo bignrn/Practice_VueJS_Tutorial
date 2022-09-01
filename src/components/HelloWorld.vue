@@ -11,6 +11,8 @@
     <p>{{ total }}</p>
     <!-- incrementと言うイベントを定義。子コンポーネントから$emitされたら、incrementTotal実行される -->
     <hello-child-2 v-on:increment="incrementTotal" />
+    <hello-child-2 v-on:increment="incrementTotal" />
+    <hello-child-2 v-on:increment="incrementTotal" />
   </div>
 </template>
 
