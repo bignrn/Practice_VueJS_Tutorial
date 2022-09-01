@@ -31,22 +31,31 @@
         <about-parent :num="num" :birthday="birthday"></about-parent>
       </div>
     </div>
+    <div class="list">
+      <div class="listItem">
+        <h2>Validationを設定する(カスタムバリデーター)</h2>
+        <about-props-2 :name="productName"></about-props-2>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import AboutParent from "../components/About/AboutParent.vue";
+import AboutProps2 from "../components/About/AboutProps2.vue";
 
 export default {
   name: "AboutView",
   components: {
     AboutParent,
+    AboutProps2,
   },
   data: function () {
     return {
       aParentTitle: "トートバックbind",
       num: 3,
       birthday: 12345678,
+      productName: "ショルダーバッグ",
     };
   },
 };
