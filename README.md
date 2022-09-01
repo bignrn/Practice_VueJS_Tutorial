@@ -2,10 +2,10 @@
 
 ## Project setup (Vue CLI)
 参考：https://wk-partners.co.jp/homepage/blog/hpseisaku/javascript/vuejs/
-
-> npm install -g @vue/cli
-> vue ui
-
+```
+npm install -g @vue/cli
+vue ui
+```
 説明：
 Vue.jsプロジェクトをGUIを用いて簡単に作成出来る。
 さらに、serveの実行や管理も出来る。
