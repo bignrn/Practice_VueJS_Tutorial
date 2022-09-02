@@ -27,3 +27,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ## Propsについて
 参考：https://reffect.co.jp/vue/vue-js-master-props-for-beginner
+
+---
+# Pagesにて公開予定
+参考：https://zenn.dev/catch/articles/install_vuejs
