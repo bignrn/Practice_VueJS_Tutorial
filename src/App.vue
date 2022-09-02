@@ -1,14 +1,31 @@
 <template>
   <nav>
-    <router-link to="/">Home-練習1</router-link> |
-    <router-link to="/home2">Home2-練習2</router-link> |
-    <router-link to="/about-props">Propsについて</router-link> |
-    <router-link to="/document">ドキュメント実装</router-link> |
-    <router-link to="/calendar">カレンダー</router-link>
+    <span v-for="(urls, index) in urls" :key="index"
+      ><router-link :to="defaultCurrent + urls.url">{{
+        urls.title
+      }}</router-link>
+      |
+    </span>
   </nav>
   <router-view />
 </template>
 
+<script>
+export default {
+  data: function () {
+    return {
+      defaultCurrent: "/Practice_VueJS_Tutorial",
+      urls: [
+        { url: "/", title: "Home-練習1" },
+        { url: "/home2", title: "Home-練習2" },
+        { url: "/about-props", title: " Propsについて" },
+        { url: "/document", title: " ドキュメント実装" },
+        { url: "/calendar", title: " カレンダー" },
+      ],
+    };
+  },
+};
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
