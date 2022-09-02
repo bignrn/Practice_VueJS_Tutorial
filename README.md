@@ -35,3 +35,17 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 ---
 # Pagesにて公開予定
 参考：https://zenn.dev/catch/articles/install_vuejs
+```
+// vue.config.jsに追加で記述します。
+module.exports = {
+  outputDir: 'docs',
+  assetsDir: './',
+  publicPath: './',
+}
+```
+下記のコマンドを実行。静的ファイルを生成する。
+```
+yarn build
+```
+※yarnのインストールは[npm install -g yarn]（npm\node_modules\yarnに生成される）
+詳しい用途は調べ見てください。npmよりインストールが早いのは理解しました。
