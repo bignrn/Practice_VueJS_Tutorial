@@ -4,6 +4,7 @@
     <router-link to="/home2">Home2-練習2</router-link> |
     <router-link to="/about-props">Propsについて</router-link> |
     <router-link to="/document">ドキュメント実装</router-link> |
+    <router-link to="/calendar">カレンダー</router-link>
   </nav>
   <router-view />
 </template>
