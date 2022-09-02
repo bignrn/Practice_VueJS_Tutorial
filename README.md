@@ -28,6 +28,10 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 ## Propsについて
 参考：https://reffect.co.jp/vue/vue-js-master-props-for-beginner
 
+## カレンダーで参考にした文献
+参考：https://reffect.co.jp/vue/javascript-vue-js-create-calendar#i
+参考：https://reffect.co.jp/vue/vue-js-original-calendar
+
 ---
 # Pagesにて公開予定
 参考：https://zenn.dev/catch/articles/install_vuejs
