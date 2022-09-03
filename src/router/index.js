@@ -1,11 +1,14 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import HomeView2 from '../views/HomeView2.vue'
-import ErrorView from '../views/ErrorView.vue'
+import { createRouter, createWebHistory } from 'vue-router';
+import HomeView from '../views/HomeView.vue';
+import HomeView2 from '../views/HomeView2.vue';
+import ErrorView from '../views/ErrorView.vue';
+import AboutView from '../views/AboutView.vue';
+import DocumentView from '../views/DocumentView.vue';
+import CalendarView from '../views/CalendarView.vue';
 
 const routes = [
   {
-    path: '/',
+    path: '/*',
     name: 'error',
     component: ErrorView
   },
@@ -22,20 +25,42 @@ const routes = [
   {
     path: '/Practice_VueJS_Tutorial/about-props',
     name: 'aboutProps',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    component: AboutView
   },
   {
     path: '/Practice_VueJS_Tutorial/document',
     name: 'document',
-    component: () => import(/* webpackChunkName: "document" */'../views/DocumentView.vue')
+    component: DocumentView
   },
   {
     path: '/Practice_VueJS_Tutorial/calendar',
     name: 'calendar',
-    component: () => import(/* webpackChunkName: "calendar" */'../views/CalendarView.vue')
+    component: CalendarView
+  },
+  {
+    path: '/',
+    name: 'home',
+    component: HomeView
+  },
+  {
+    path: '/home2',
+    name: 'home2',
+    component: HomeView2
+  },
+  {
+    path: '/about-props',
+    name: 'aboutProps',
+    component: AboutView
+  },
+  {
+    path: '/document',
+    name: 'document',
+    component: DocumentView
+  },
+  {
+    path: '/calendar',
+    name: 'calendar',
+    component: CalendarView
   },
 ]
 

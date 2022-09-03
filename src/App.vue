@@ -1,9 +1,7 @@
 <template>
   <nav>
-    <span v-for="(urls, index) in urls" :key="index"
-      ><router-link :to="defaultCurrent + urls.url">{{
-        urls.title
-      }}</router-link>
+    <span v-for="(urlsItem, index) in urls" :key="index"
+      ><router-link :to="returnUrl(urlsItem)">{{ urlsItem.title }}</router-link>
       |
     </span>
   </nav>
@@ -14,6 +12,7 @@
 export default {
   data: function () {
     return {
+      locationHost: "localhost:8080",
       defaultCurrent: "/Practice_VueJS_Tutorial",
       urls: [
         { url: "/", title: "Home-練習1" },
@@ -23,6 +22,15 @@ export default {
         { url: "/calendar", title: " カレンダー" },
       ],
     };
+  },
+  methods: {
+    returnUrl(val) {
+      console.log(val.url);
+      if (location.host !== this.locationHost) {
+        return this.defaultCurrent + val.url;
+      }
+      return val.url;
+    },
   },
 };
 </script>
