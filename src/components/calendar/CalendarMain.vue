@@ -21,16 +21,21 @@
           :key="index"
           class="calendar-daily"
           :class="{ outside: currentMonth !== day.month }"
+          @drop="dragEnd($event, day.date)"
+          @dragover.prevent
         >
-          <div class="calendar-day">{{ day.date }}</div>
+          <div class="calendar-day">{{ day.day }}</div>
           <div v-for="dayEvent in day.dayEvents" :key="dayEvent.id">
             <div
+              v-if="dayEvent.width"
               class="calendar-event"
               :style="`width:${dayEvent.width}%;background-color:${dayEvent.color}`"
               draggable="true"
+              @dragstart="dragStart($event, dayEvent.id)"
             >
               {{ dayEvent.name }}
             </div>
+            <div v-else style="height: 26px"></div>
           </div>
         </div>
       </div>
@@ -214,9 +219,10 @@ export default {
         for (let day = 0; day < 7; day++) {
           let dayEvents = this.getDayEvents(calendarDate, day);
           weekRow.push({
-            date: calendarDate.get("date"),
+            day: calendarDate.get("date"),
+            date: calendarDate.format("YYYY-MM-DD"),
             month: calendarDate.format("YYYY-MM"),
-            dayEvents,
+            dayEvents: dayEvents,
           });
           calendarDate.add(1, "days");
         }
@@ -239,19 +245,36 @@ export default {
     },
     /** イベント処理取得(date) */
     getDayEvents(date, day) {
-      let dayEvents = [];
-      this.events.forEach((event) => {
+      let stackIndex = 0;
+      let dayEvents = [{ "": "" }];
+      let startedEvents = [];
+
+      this.sortedEvents.forEach((event) => {
         let startDate = moment(event.start).format("YYYY-MM-DD");
         let endDate = moment(event.end).format("YYYY-MM-DD");
         let Date = date.format("YYYY-MM-DD");
 
         if (startDate <= Date && endDate >= Date) {
           if (startDate === Date) {
-            let width = this.getEventWidth(startDate, endDate, day);
-            dayEvents.push({ ...event, width });
+            [stackIndex, dayEvents] = this.getStackEvents(
+              event,
+              day,
+              stackIndex,
+              dayEvents,
+              startedEvents,
+              event.start
+            );
           } else if (day === 0) {
-            let width = this.getEventWidth(date, endDate, day);
-            dayEvents.push({ ...event, width });
+            [stackIndex, dayEvents] = this.getStackEvents(
+              event,
+              day,
+              stackIndex,
+              dayEvents,
+              startedEvents,
+              Date
+            );
+          } else {
+            startedEvents.push(event);
           }
         }
       });
@@ -269,6 +292,53 @@ export default {
         return betweenDays * 100 + 95;
       }
     },
+    /** 重複管理 */
+    getStackEvents(event, day, stackIndex, dayEvents, startedEvents, start) {
+      [stackIndex, dayEvents] = this.getStartedEvents(
+        stackIndex,
+        startedEvents,
+        dayEvents
+      );
+      let width = this.getEventWidth(start, event.end, day);
+      Object.assign(event, {
+        stackIndex,
+      });
+      dayEvents.push({ ...event, width });
+      stackIndex++;
+      return [stackIndex, dayEvents];
+    },
+    getStartedEvents(stackIndex, startedEvents, dayEvents) {
+      let startedEvent;
+      do {
+        startedEvent = startedEvents.find(
+          (event) => event.stackIndex === stackIndex
+        );
+        if (startedEvent) {
+          dayEvents.push(startedEvent); //ダミー領域として利用するため
+          stackIndex++;
+        }
+      } while (typeof startedEvent !== "undefined");
+      return [stackIndex, dayEvents];
+    },
+    /** ドラッグ処理(start) */
+    dragStart(event, eventId) {
+      event.dataTransfer.effectAllowed = "move";
+      event.dataTransfer.dropEffect = "move";
+      event.dataTransfer.setData("eventId", eventId);
+    },
+    /** ドラッグ処理(end) */
+    dragEnd(event, date) {
+      let eventId = event.dataTransfer.getData("eventId");
+      let dragEvent = this.events.find((event) => event.id == eventId);
+      let betweenDays = moment(dragEvent.end).diff(
+        moment(dragEvent.start),
+        "days"
+      );
+      dragEvent.start = date;
+      dragEvent.end = moment(dragEvent.start)
+        .add(betweenDays, "days")
+        .format("YYYY-MM-DD");
+    },
   },
   computed: {
     calendars() {
@@ -281,7 +351,7 @@ export default {
       return this.currentDate.format("YYYY-MM");
     },
     sortedEvents() {
-      return this.event.slice().sort(function (a, b) {
+      return this.events.slice().sort(function (a, b) {
         let startDateA = moment(a.start).format("YYYY-MM-DD");
         let startDateB = moment(b.start).format("YYYY-MM-DD");
         if (startDateA < startDateB) return -1;
@@ -291,7 +361,7 @@ export default {
     },
   },
   mounted() {
-    console.log(this.getCalendar());
+    // console.log(this.getCalendar());
   },
 };
 </script>
@@ -311,8 +381,6 @@ export default {
   max-width: 900px;
   border-top: 1px solid #e0e0e0;
   font-size: 0.8em;
-  /* テキスト左寄せ */
-  text-align: left;
 }
 .calendar-weekly {
   display: flex;
@@ -344,5 +412,9 @@ export default {
   margin-bottom: 1px;
   height: 25px;
   line-height: 25px;
+  position: relative;
+  z-index: 1;
+  border-radius: 4px;
+  padding-left: 4px;
 }
 </style>
