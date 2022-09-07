@@ -33,7 +33,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 参考：https://reffect.co.jp/vue/vue-js-original-calendar
 
 ---
-# Pagesにて公開予定
+# Pagesにて公開
 参考：https://zenn.dev/catch/articles/install_vuejs
 ```
 // vue.config.jsに追加で記述します。
@@ -49,3 +49,4 @@ yarn build
 ```
 ※yarnのインストールは[npm install -g yarn]（npm\node_modules\yarnに生成される）
 詳しい用途は調べ見てください。npmよりインストールが早いのは理解しました。
+公開ページ：https://bignrn.github.io/Practice_VueJS_Tutorial/
