@@ -10,7 +10,7 @@ vue ui
 Vue.jsプロジェクトをGUIを用いて簡単に作成出来る。
 さらに、serveの実行や管理も出来る。
 
-コンパイルとwebの開き方
+コンパイルとwebの開き方<br>
 タスク＞タスクの実行＞アプリを開く
 
 ### Customize configuration
@@ -30,6 +30,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ## カレンダーで参考にした文献
 参考：https://reffect.co.jp/vue/javascript-vue-js-create-calendar#i
+<br>
 参考：https://reffect.co.jp/vue/vue-js-original-calendar
 
 ---
@@ -47,6 +48,6 @@ module.exports = {
 ```
 yarn build
 ```
-※yarnのインストールは[npm install -g yarn]（npm\node_modules\yarnに生成される）
-詳しい用途は調べ見てください。npmよりインストールが早いのは理解しました。
+※yarnのインストールは[npm install -g yarn]（npm\node_modules\yarnに生成される）<br>
+詳しい用途は調べ見てください。npmよりインストールが早いのは理解しました。<br>
 公開ページ：https://bignrn.github.io/Practice_VueJS_Tutorial/
