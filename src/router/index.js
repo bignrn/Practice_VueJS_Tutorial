@@ -8,59 +8,34 @@ import CalendarView from '../views/CalendarView.vue';
 
 const routes = [
   {
-    path: '/Practice_VueJS_Tutorial/',
+    path: '/',
+    component: HomeView,
+    redirect: "/Practice_VueJS_Tutorial"
+  },
+  {
+    path: '/Practice_VueJS_Tutorial',
     name: 'home',
     component: HomeView,
-    alias: '/'
   },
   {
     path: '/Practice_VueJS_Tutorial/home2',
     name: 'home2',
     component: HomeView2,
-    alias: '/home2'
   },
   {
     path: '/Practice_VueJS_Tutorial/about-props',
     name: 'aboutProps',
     component: AboutView,
-    alias: '/about-props'
   },
   {
     path: '/Practice_VueJS_Tutorial/document',
     name: 'document',
     component: DocumentView,
-    alias: '/document'
   },
   {
     path: '/Practice_VueJS_Tutorial/calendar',
     name: 'calendar',
     component: CalendarView,
-    alias: '/calendar'
-  },
-  {
-    path: '/',
-    name: 'home',
-    component: HomeView
-  },
-  {
-    path: '/home2',
-    name: 'home2',
-    component: HomeView2
-  },
-  {
-    path: '/about-props',
-    name: 'aboutProps',
-    component: AboutView
-  },
-  {
-    path: '/document',
-    name: 'document',
-    component: DocumentView
-  },
-  {
-    path: '/calendar',
-    name: 'calendar',
-    component: CalendarView
   },
 ]
 
